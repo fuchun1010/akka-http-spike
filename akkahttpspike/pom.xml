@@ -7,22 +7,37 @@
     <groupId>com.tank</groupId>
     <artifactId>akka-http-spike</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <akka_http_version>2.12</akka_http_version>
+        <spark_seria_version>2.2.1</spark_seria_version>
+        <scala_version>2.11</scala_version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-http_2.12</artifactId>
+            <artifactId>akka-http_${akka_http_version}</artifactId>
             <version>10.1.0-RC1</version>
         </dependency>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-stream_2.12</artifactId>
+            <artifactId>akka-stream_${akka_http_version}</artifactId>
             <version>2.5.8</version>
         </dependency>
         <dependency>
-            <groupId>com.github.pureconfig</groupId>
-            <artifactId>pureconfig_2.12</artifactId>
-            <version>0.9.0</version>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${scala_version}</artifactId>
+            <version>${spark_seria_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>${spark_seria_version}</version>
         </dependency>
     </dependencies>
 </project>
