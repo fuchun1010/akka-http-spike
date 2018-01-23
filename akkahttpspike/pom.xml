@@ -9,20 +9,20 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <akka_http_version>2.12</akka_http_version>
-        <spark_seria_version>2.2.1</spark_seria_version>
+        <spark_seria_version>2.2.0</spark_seria_version>
         <scala_version>2.11</scala_version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-http_${akka_http_version}</artifactId>
-            <version>10.1.0-RC1</version>
+            <artifactId>akka-http_2.11</artifactId>
+            <version>3.0.0-RC1</version>
         </dependency>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-stream_${akka_http_version}</artifactId>
-            <version>2.5.8</version>
+            <artifactId>akka-stream_2.11</artifactId>
+            <version>2.4.9-RC2</version>
         </dependency>
         <dependency>
             <groupId>com.typesafe</groupId>
@@ -31,13 +31,13 @@
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_${scala_version}</artifactId>
-            <version>${spark_seria_version}</version>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
-            <version>${spark_seria_version}</version>
+            <artifactId>spark-network-common_2.11</artifactId>
+            <version>2.1.2</version>
         </dependency>
     </dependencies>
 </project>
