@@ -2,3 +2,5 @@
 akkahttpspike.iml
 target/
 spark-warehouse/
+log/
+parquet/

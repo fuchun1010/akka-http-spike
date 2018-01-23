@@ -15,7 +15,7 @@ trait InitSystem {
     if (!target.exists()) {
       target.mkdir()
     }
-    target.getAbsolutePath
+    target.getAbsolutePath + File.separator
   }
 
   def readSystemConfig(): Try[SystemConfig] = {

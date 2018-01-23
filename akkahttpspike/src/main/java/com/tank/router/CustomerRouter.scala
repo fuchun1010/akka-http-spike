@@ -3,8 +3,11 @@ package com.tank.router
 import akka.http.scaladsl.server.Directives._
 import com.tank.common.InitSystem
 
-trait CustomerRouter extends UserRouter with DataSetRouter with InitSystem {
+trait CustomerRouter extends UserRouter
+  with DataSetRouter
+  with SpikeRouter
+  with InitSystem {
 
 
-  val customerRouter = userRouter ~ dataSetRouter
+  val customerRouter = userRouter ~ dataSetRouter ~ spikeRouter
 }
