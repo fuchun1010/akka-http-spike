@@ -11,12 +11,6 @@ import scala.util.{Failure, Success}
 
 object Boot extends App with SparkSessionQueue with CustomerRouter with InitSystem {
 
-  initSparkSessionQueue()
-
-  getOrCreateDir("log")
-
-  getOrCreateDir("upload")
-
   def startServer(): Unit = {
 
     implicit val actorSystem = ActorSystem("akka-http-demo")
@@ -24,8 +18,9 @@ object Boot extends App with SparkSessionQueue with CustomerRouter with InitSyst
     implicit val actorMaterializer: ActorMaterializer = ActorMaterializer()
     readSystemConfig() match {
       case Success(systemConfig) => {
-        println("start server success")
+        initSparkSessionQueue()
         Http().bindAndHandle(customerRouter, systemConfig.ip, systemConfig.port)
+        println(s"success start server listing on ${systemConfig.port}")
       }
       case Failure(e) => {
         println(e)
@@ -34,6 +29,5 @@ object Boot extends App with SparkSessionQueue with CustomerRouter with InitSyst
   }
 
   startServer()
-
 
 }

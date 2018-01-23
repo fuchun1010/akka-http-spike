@@ -9,16 +9,13 @@ import scala.util.Try
 trait InitSystem {
   private val rootDirPath = new File(".").getAbsolutePath.replace(".", "")
 
-  def getOrCreateDir(name: String): String = {
+  private def getOrCreateDir(name: String): String = {
     val path = rootDirPath + name + File.separator
     val target = new File(path)
-    target.isDirectory match {
-      case true => target.getAbsolutePath
-      case _ => {
-        target.mkdirs()
-        target.getAbsolutePath
-      }
+    if (!target.exists()) {
+      target.mkdir()
     }
+    target.getAbsolutePath
   }
 
   def readSystemConfig(): Try[SystemConfig] = {
@@ -27,6 +24,12 @@ trait InitSystem {
     val port = config.getInt("http.port")
     Try(SystemConfig(ip, port))
   }
+
+  val logDir = () => getOrCreateDir("log")
+
+  val parquetDir = () => getOrCreateDir("parquet")
+
+  val uploadDir = () => getOrCreateDir("upload")
 
   case class SystemConfig(ip: String, port: Int)
 
