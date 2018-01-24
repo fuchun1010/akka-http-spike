@@ -15,7 +15,14 @@ trait SparkSessionQueue {
   private val sessionQueue: BlockingQueue[SparkSession] = new ArrayBlockingQueue[SparkSession](sparkSessionThreshold())
 
   def initSparkSessionQueue(): Unit = {
-    val session = SparkSession.builder().appName("akka-http-spike-spark").master("local[*]").getOrCreate()
+    val session = SparkSession.builder()
+      .appName("akka-http-spike-spark")
+      .master("local[*]")
+      .config("spark.executor.memory", "2G")
+      .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
+      .config("spark.scheduler.mode", "FAIR")
+      .config("spark.scheduler.pool", "spike_pool")
+      .getOrCreate()
     for (i <- 1 to sparkSessionThreshold()) {
       sessionQueue.add(session.newSession())
     }
