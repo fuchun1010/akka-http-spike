@@ -41,6 +41,7 @@ trait SpikeRouter {
         val session = getSession()
         val dfA = session.read.parquet(parquetPath).as("dfA")
         val dfB = session.read.parquet(parquetPath).as("dfB")
+
         val rs = dfA.join(dfB, col("dfA._id") === col("dfB._id"), "inner").repartition(64)
         rs.show(10)
         close(session)
