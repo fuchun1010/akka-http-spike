@@ -27,6 +27,12 @@ trait SparkSessionQueue {
 
   def getSession(): SparkSession = sessionQueue.take()
 
+  def runWithSession(callback: SparkSession => Unit): Unit = {
+    val session = getSession()
+    callback(session)
+    close(session)
+  }
+
   def size(): Int = sessionQueue.size()
 
 }

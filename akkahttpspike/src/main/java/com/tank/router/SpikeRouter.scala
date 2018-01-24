@@ -15,12 +15,12 @@ trait SpikeRouter {
 
     pathEndOrSingleSlash {
       get {
-        val session = getSession()
-        val start = System.currentTimeMillis()
-        session.read.parquet(parquetPath).schema.foreach(f => println(f.name))
-        val end = System.currentTimeMillis()
-        println("cost time ->" + (end - start))
-        close(session)
+        runWithSession((session) => {
+          val start = System.currentTimeMillis()
+          session.read.parquet(parquetPath).schema.foreach(f => println(f.name))
+          val end = System.currentTimeMillis()
+          println("cost time ->" + (end - start))
+        })
         complete("ok")
       }
     } ~ pathPrefix("single") {
