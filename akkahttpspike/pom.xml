@@ -46,6 +46,16 @@
             <artifactId>akka-http-cors_2.11</artifactId>
             <version>0.1.8</version>
         </dependency>
+        <dependency>
+            <groupId>de.heikoseeberger</groupId>
+            <artifactId>akka-http-json4s_2.11</artifactId>
+            <version>1.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-http-jackson_2.11</artifactId>
+            <version>10.0.11</version>
+        </dependency>
     </dependencies>
 
     <build>
