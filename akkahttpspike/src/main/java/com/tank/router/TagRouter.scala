@@ -16,7 +16,7 @@ trait TagRouter extends JsonSupport {
       entity(as[Tag]) { tag =>
         println(s"""name:${tag.name}""")
         complete(s"tag ok")
-      }
+      } 
     }
   }
 }
